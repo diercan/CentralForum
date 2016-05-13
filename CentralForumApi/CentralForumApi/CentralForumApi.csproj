@@ -190,8 +190,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <None Include="Properties\PublishProfiles\centralforum - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\filesystem.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
