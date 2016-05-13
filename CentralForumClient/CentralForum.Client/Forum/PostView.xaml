@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="CentralForum.Client.Forum.PostView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:forum="clr-namespace:CentralForum.Client.Forum"
+             xmlns:converters="clr-namespace:CentralForum.Client.Converters"
+             mc:Ignorable="d" 
+             Background="#cfddee">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <forum:MessageView DataContext="{Binding MainPostVM}"></forum:MessageView>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ToggleButton Width="50"
+                    Height="20"
+                    Background="#8ba0b0"
+                    Content="Replies"
+                    IsChecked="{Binding RepliesViewVisibility}"
+                    VerticalAlignment="Bottom"
+                    Grid.Column="1"/>
+        </Grid>
+
+
+        <ItemsControl ItemsSource="{Binding PostReplies}" Grid.Row="2" Visibility="{Binding RepliesViewVisibility, 
+                      Converter={StaticResource BoolToVisibility}, Mode=OneWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <forum:MessageView />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+
+        <forum:PostBarView Grid.Row="3" DataContext="{Binding PostBarVM}" />
+
+        <forum:MessageEditorView Visibility="{Binding DataContext.NewPostWindowVisibility, 
+                                           RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                           Converter={StaticResource BoolToVisibility}, Mode=OneWay}"
+                                           DataContext="{Binding MessageEditorVM}"
+                                 Grid.Row="4" />
+
+    </Grid>
+    
+</UserControl>

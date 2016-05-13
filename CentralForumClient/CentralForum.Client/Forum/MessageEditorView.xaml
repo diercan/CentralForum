@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="CentralForum.Client.Forum.MessageEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Background="#dee8f0">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CentralForum.Client;component/Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="75"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel>
+
+            <TextBox Margin="10 10 10 0" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            
+            <TextBox Name="ReplyTextBox"
+                 Grid.Column="0"
+                 Height="60"
+                 AcceptsReturn="True"
+                 Margin="10" Text="{Binding TextMessage, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+
+        <Button
+                Grid.Column="1"
+                Command="{Binding CancelPost}"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                BorderBrush="#dee8f0"
+                Background="#dee8f0">
+            <Label Style="{StaticResource fa-times}"  FontSize="20" />
+        </Button>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Margin="0 28 10 0">
+            <Button
+                Width="50"
+                Height="50"
+                Command="{Binding PostMessage}"
+                Background="#8ba0b0"
+                BorderBrush="#bbcee6">
+                <Label Style="{StaticResource fa-pencil-square-o}" 
+                       FontSize="35"
+                       Margin="4 8 0 0"/>
+            </Button>
+            
+        </StackPanel>
+        
+    </Grid>
+
+</UserControl>

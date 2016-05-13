@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="CentralForum.Client.Forum.PostBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Background="CadetBlue"
+             Height="40">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <ToggleButton Content="Reply"
+                Grid.Column="5"
+                IsChecked="{Binding ReplayEditorVisibility}"
+                Margin="5"/>
+
+    </Grid>
+</UserControl>
